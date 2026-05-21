@@ -660,11 +660,9 @@
   /* ── HOMEPAGE WIREFRAME ── */
   .wf-hero {
     background: var(--navy);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     min-height: 540px;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
   }
   .wf-hero::after {
     content: '';
@@ -679,7 +677,10 @@
     flex-direction: column;
     justify-content: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    width: 60%;
+    min-height: 540px;
+    box-sizing: border-box;
   }
   .wf-hero-eyebrow {
     font-family: var(--mono);
@@ -712,6 +713,15 @@
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
+  }
+  .wf-hero-img {
+    position: absolute;
+    left: 50%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1;
   }
   .wf-hero-visual {
     background: var(--navy-mid);
@@ -1358,8 +1368,8 @@
   .resp-note strong { color: var(--navy); }
 
   @media (max-width: 900px) {
-    .wf-hero { grid-template-columns: 1fr; }
-    .wf-hero-visual { display: none; }
+    .wf-hero-text { width: 100%; }
+    .wf-hero-img { display: none; }
     .wf-about { grid-template-columns: 1fr; }
     .wf-tracks-grid { grid-template-columns: 1fr 1fr; }
     .wf-speakers-grid { grid-template-columns: repeat(3, 1fr); }
@@ -1917,9 +1927,9 @@
           <button class="btn btn-outline" style="color:var(--gold);border-color:var(--gold);">View Programme</button>
         </div>
       </div>
-      <div style="position:relative;overflow:hidden;background:var(--navy);">
-        <img src="https://res.cloudinary.com/dmegrbq5k/image/upload/v1779368478/Untitled_design_-_2026-05-21T150100.650_ua7tkf.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;min-height:540px;" />
-        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,39,68,0.85) 0%,rgba(26,39,68,0.3) 50%,rgba(26,39,68,0) 100%);pointer-events:none;"></div>
+      <div class="wf-hero-img">
+        <img src="https://res.cloudinary.com/dmegrbq5k/image/upload/v1779368478/Untitled_design_-_2026-05-21T150100.650_ua7tkf.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,39,68,0.95) 0%,rgba(26,39,68,0.5) 35%,rgba(26,39,68,0) 65%);pointer-events:none;"></div>
       </div>
       <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--gold),var(--sky));"></div>
     </div>
