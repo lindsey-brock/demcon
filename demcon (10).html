@@ -1,0 +1,2326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DemCon — Style Guide & Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=League+Spartan:wght@400;600;700;900&family=IBM+Plex+Mono:wght@400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* DEMCON COLOR SYSTEM */
+    --red:       #C8202E;
+    --red-dark:  #8B1219;
+    --navy:      #1A2744;
+    --navy-mid:  #243660;
+    --gold:      #E8A820;
+    --gold-light:#F5C84A;
+    --cream:     #F4EFE0;
+    --white:     #FAFAF5;
+    --black:     #0D0D0D;
+    --slate:     #4A5568;
+    --sky:       #5B8DB8;
+
+    /* TYPE SCALE */
+    --display:  'Bebas Neue', sans-serif;
+    --heading:  'League Spartan', sans-serif;
+    --body:     'League Spartan', sans-serif;
+    --mono:     'IBM Plex Mono', monospace;
+    --editorial:'Playfair Display', serif;
+
+    /* SPACING */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 32px;
+    --space-xl: 64px;
+    --space-2xl:128px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--black);
+    font-family: var(--body);
+    line-height: 1.5;
+  }
+
+  /* ─── GUIDE NAV ─── */
+  .guide-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 var(--space-lg);
+    height: 52px;
+    overflow-x: auto;
+  }
+  .guide-nav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #aaa;
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: all .2s;
+  }
+  .guide-nav a:hover, .guide-nav a.active {
+    color: var(--gold);
+    background: rgba(232,168,32,.12);
+  }
+  .guide-nav .logo-pill {
+    font-family: var(--display);
+    font-size: 20px;
+    color: var(--red);
+    letter-spacing: .06em;
+    margin-right: var(--space-lg);
+    flex-shrink: 0;
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    padding: var(--space-xl) var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section + .section { border-top: 1px solid rgba(0,0,0,.1); }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: var(--space-sm);
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: 48px;
+    color: var(--navy);
+    letter-spacing: .04em;
+    margin-bottom: var(--space-lg);
+    line-height: 1;
+  }
+
+  /* ─── 0. COVER ─── */
+  #cover {
+    background: var(--navy);
+    padding: 0;
+    max-width: 100%;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: visible;
+  }
+  #cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,.04) 40px);
+    pointer-events: none;
+  }
+  .cover-left {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .cover-wordmark {
+    font-family: var(--display);
+    font-size: 140px;
+    color: var(--white);
+    line-height: .88;
+    letter-spacing: .02em;
+    position: relative;
+  }
+  .cover-wordmark .accent {
+    color: var(--red);
+  }
+  .cover-tagline {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold-light);
+    margin-top: 24px;
+    max-width: 400px;
+    line-height: 1.4;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item {
+    font-family: var(--heading);
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    font-weight: 400;
+  }
+  .cover-meta-item strong {
+    display: block;
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .cover-right {
+    position: relative;
+    overflow: visible;
+  }
+  .cover-poster-stack {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  .poster-tile {
+    overflow: visible;
+    position: relative;
+  }
+  .poster-tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,32,46,.3), rgba(26,39,68,.6));
+    mix-blend-mode: multiply;
+  }
+  .poster-demo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+    letter-spacing: .1em;
+  }
+  /* Illustrated poster tiles */
+  .pt-1 { background: #3a6ea5; }
+  .pt-2 { background: #8B1219; }
+  .pt-3 { background: #c8a043; }
+  .pt-4 { background: #2a3d1f; }
+  .pt-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .pt-icon {
+    font-size: 64px;
+    filter: brightness(0) invert(1);
+    opacity: .7;
+  }
+  .pt-text {
+    font-family: var(--display);
+    font-size: 18px;
+    color: rgba(255,255,255,.8);
+    text-align: center;
+    letter-spacing: .08em;
+  }
+
+  /* ─── 1. COLOR PALETTE ─── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: var(--space-md);
+  }
+  .color-swatch {
+    border-radius: 6px;
+    overflow: visible;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+  }
+  .swatch-block {
+    height: 100px;
+  }
+  .swatch-info {
+    padding: 10px 12px;
+    background: var(--white);
+  }
+  .swatch-name {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--black);
+  }
+  .swatch-hex {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+  .swatch-use {
+    font-family: var(--body);
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  /* ─── 2. TYPOGRAPHY ─── */
+  .type-specimens {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  .type-row {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid rgba(0,0,0,.08);
+  }
+  .type-meta {
+    padding-top: 6px;
+  }
+  .type-meta-name {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .type-meta-font {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 4px;
+  }
+  .type-meta-use {
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 8px;
+    line-height: 1.4;
+  }
+  .t-display {
+    font-family: var(--display);
+    font-size: 80px;
+    color: var(--navy);
+    line-height: .9;
+    letter-spacing: .03em;
+  }
+  .t-h1 {
+    font-family: var(--heading);
+    font-size: 52px;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+    letter-spacing: -.01em;
+  }
+  .t-h2 {
+    font-family: var(--heading);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.1;
+  }
+  .t-h3 {
+    font-family: var(--heading);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .t-body {
+    font-family: var(--body);
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--black);
+    max-width: 620px;
+    line-height: 1.7;
+  }
+  .t-editorial {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--red-dark);
+    line-height: 1.4;
+    max-width: 600px;
+  }
+  .t-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* ─── 3. COMPONENTS ─── */
+  .components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-lg);
+  }
+  .comp-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: visible;
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
+  }
+  .comp-label {
+    background: var(--black);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+  }
+  .comp-preview {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+
+  /* Buttons */
+  .btn {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all .2s;
+  }
+  .btn-primary {
+    background: var(--red);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 2px solid var(--navy);
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* Tags / Track badges */
+  .track-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    display: inline-block;
+  }
+  .track-feminism  { background: #e8a0b4; color: #5c1a2e; }
+  .track-climate   { background: #a8d5a2; color: #1e4a1c; }
+  .track-faith     { background: #c4b0e8; color: #2e1e5c; }
+  .track-media     { background: #f5d08a; color: #5c3a00; }
+  .track-tech      { background: #a0c8e8; color: #1a3a5c; }
+  .track-children  { background: #f5c8a0; color: #5c2e00; }
+  .track-race      { background: #c8a0a0; color: #3a1010; }
+  .track-municipal { background: #a0e8d0; color: #0a3a28; }
+
+  /* Speaker card */
+  .speaker-card {
+    background: var(--white);
+    border-left: 4px solid var(--red);
+    padding: var(--space-md);
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+  .speaker-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 24px;
+    color: var(--gold);
+  }
+  .speaker-name {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--navy);
+  }
+  .speaker-role {
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+  .speaker-org {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--red);
+    margin-top: 4px;
+  }
+
+  /* Session tile */
+  .session-tile {
+    border: 1px solid rgba(0,0,0,.12);
+    padding: var(--space-md);
+    background: var(--white);
+    position: relative;
+  }
+  .session-tile::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .session-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--slate);
+    margin-bottom: 6px;
+  }
+  .session-title {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--navy);
+    line-height: 1.25;
+  }
+  .session-room {
+    font-size: 12px;
+    color: var(--slate);
+    margin-top: 6px;
+  }
+
+  /* Nav bar component */
+  .demo-nav {
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    height: 64px;
+    gap: 0;
+  }
+  .demo-nav .nav-logo {
+    font-family: var(--display);
+    font-size: 32px;
+    color: var(--white);
+    letter-spacing: .04em;
+    margin-right: auto;
+  }
+  .demo-nav .nav-logo span { color: var(--red); }
+  .demo-nav .nav-links {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .demo-nav .nav-link {
+    font-family: var(--heading);
+    font-weight: 600;
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+    padding: 8px 14px;
+    letter-spacing: .02em;
+    transition: color .2s;
+  }
+  .demo-nav .nav-link:hover { color: var(--gold); }
+  .demo-nav .nav-cta {
+    background: var(--red);
+    color: var(--white);
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 8px 20px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-left: var(--space-md);
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Vertical pill */
+  .vertical-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-family: var(--heading);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .2s;
+    border: 1.5px solid currentColor;
+  }
+  .vertical-pill .pip { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  /* ─── 4. VERTICALS ─── */
+  .verticals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-md);
+  }
+  .vertical-card {
+    padding: var(--space-lg);
+    position: relative;
+    overflow: visible;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .vc-number {
+    font-family: var(--display);
+    font-size: 100px;
+    color: rgba(255,255,255,.08);
+    line-height: 1;
+    position: absolute;
+    top: -10px;
+    right: -8px;
+    pointer-events: none;
+  }
+  .vc-icon { font-size: 32px; margin-bottom: 12px; }
+  .vc-name {
+    font-family: var(--heading);
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--white);
+    line-height: 1.15;
+  }
+  .vc-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* ─── 5. WIREFRAMES ─── */
+  .wireframe-container {
+    border: 2px solid var(--navy);
+    overflow: visible;
+    box-shadow: 0 8px 40px rgba(0,0,0,.15);
+    margin-bottom: var(--space-xl);
+    position: relative;
+  }
+  .wireframe-label {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: var(--black);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    z-index: 10;
+  }
+
+  /* ── HOMEPAGE WIREFRAME ── */
+  .wf-hero {
+    background: var(--navy);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 540px;
+    position: relative;
+    overflow: visible;
+  }
+  .wf-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--gold) 50%, var(--sky) 100%);
+  }
+  .wf-hero-text {
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+  .wf-hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .wf-hero-title {
+    font-family: var(--display);
+    font-size: 96px;
+    color: var(--white);
+    line-height: .88;
+    letter-spacing: .02em;
+    margin-bottom: 24px;
+  }
+  .wf-hero-title .red { color: var(--red); }
+  .wf-hero-sub {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(255,255,255,.75);
+    max-width: 440px;
+    line-height: 1.5;
+    margin-bottom: 36px;
+  }
+  .wf-hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .wf-hero-visual {
+    background: var(--navy-mid);
+    position: relative;
+    overflow: visible;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+  .wf-poster-cell {
+    overflow: visible;
+    position: relative;
+  }
+
+  /* poster cell mockups using pure CSS */
+  .pc-1 {
+    background: linear-gradient(160deg, #3a6ea5 0%, #1a2744 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; gap: 12px;
+  }
+  .pc-2 {
+    background: linear-gradient(160deg, #8B1219 0%, #C8202E 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; gap: 12px;
+  }
+  .pc-3 {
+    background: linear-gradient(160deg, #e8a820 0%, #c87020 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; gap: 12px;
+  }
+  .pc-4 {
+    background: linear-gradient(160deg, #2a3d1f 0%, #1a4a30 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; gap: 12px;
+  }
+  .pc-emoji { font-size: 48px; }
+  .pc-text {
+    font-family: var(--display);
+    font-size: 14px;
+    color: rgba(255,255,255,.8);
+    text-align: center;
+    letter-spacing: .08em;
+  }
+
+  /* Feature strip */
+  .wf-strip {
+    background: var(--red);
+    color: var(--white);
+    padding: 16px 60px;
+    display: flex;
+    gap: 0;
+    overflow: visible;
+  }
+  .wf-strip-item {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* About section */
+  .wf-about {
+    background: var(--cream);
+    padding: 80px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .wf-about-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--red);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .wf-about-title {
+    font-family: var(--heading);
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+  .wf-about-body {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+  .wf-about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: var(--display);
+    font-size: 52px;
+    color: var(--red);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: var(--heading);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--slate);
+    margin-top: 4px;
+  }
+  .wf-about-visual {
+    background: var(--navy);
+    min-height: 400px;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wf-globe-art {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 3px solid rgba(232,168,32,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    position: relative;
+  }
+  .wf-globe-art::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,168,32,.2);
+  }
+  .wf-globe-art::after {
+    content: '';
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    border: 1px solid rgba(232,168,32,.1);
+  }
+
+  /* Tracks section */
+  .wf-tracks {
+    background: var(--navy);
+    padding: 80px 60px;
+  }
+  .wf-tracks-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .wf-tracks-title {
+    font-family: var(--display);
+    font-size: 60px;
+    color: var(--white);
+    letter-spacing: .03em;
+    line-height: 1;
+  }
+  .wf-tracks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+  }
+  .wf-track-card {
+    min-height: 200px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    cursor: pointer;
+    transition: transform .2s;
+  }
+  .wf-track-card:hover { transform: scale(1.02); z-index: 2; }
+  .wf-tc-num {
+    position: absolute;
+    top: -12px;
+    right: -4px;
+    font-family: var(--display);
+    font-size: 90px;
+    color: rgba(255,255,255,.06);
+    pointer-events: none;
+  }
+  .wf-tc-icon { font-size: 28px; margin-bottom: 10px; }
+  .wf-tc-name {
+    font-family: var(--heading);
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--white);
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+  }
+  .wf-tc-count {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: rgba(255,255,255,.5);
+    margin-top: 4px;
+  }
+
+  /* Speakers section */
+  .wf-speakers {
+    background: var(--white);
+    padding: 80px 60px;
+  }
+  .wf-speakers-header {
+    margin-bottom: 48px;
+  }
+  .wf-speakers-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 12px;
+  }
+  .wf-speakers-title {
+    font-family: var(--heading);
+    font-weight: 900;
+    font-size: 42px;
+    color: var(--navy);
+  }
+  .wf-speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .wf-speaker-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+  }
+  .wf-sp-photo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    position: relative;
+  }
+  .wf-sp-photo::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid var(--red);
+  }
+  .wf-sp-name {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .wf-sp-org {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--slate);
+  }
+
+  /* Schedule section */
+  .wf-schedule {
+    background: var(--cream);
+    padding: 80px 60px;
+  }
+  .day-tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 36px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .day-tab {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px 28px;
+    cursor: pointer;
+    color: var(--slate);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all .2s;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .day-tab.active {
+    color: var(--navy);
+    border-bottom-color: var(--red);
+  }
+  .schedule-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 1fr;
+    gap: 3px;
+    align-items: start;
+  }
+  .sched-time {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--slate);
+    padding: 14px 0;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .sched-session {
+    background: var(--white);
+    padding: 14px 16px;
+    border-left: 3px solid var(--sky);
+    position: relative;
+  }
+  .sched-session.track-red { border-left-color: var(--red); }
+  .sched-session.track-gold { border-left-color: var(--gold); }
+  .sched-session.track-green { border-left-color: #4a8a4a; }
+  .sched-session-title {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+  .sched-session-speaker {
+    font-size: 11px;
+    color: var(--slate);
+    margin-top: 4px;
+  }
+  .sched-session-room {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--slate);
+    margin-top: 4px;
+  }
+
+  /* Register CTA */
+  .wf-register {
+    background: var(--red);
+    padding: 100px 60px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+  }
+  .wf-register::before {
+    content: 'REGISTER';
+    position: absolute;
+    font-family: var(--display);
+    font-size: 200px;
+    color: rgba(255,255,255,.05);
+    top: -20px;
+    left: -20px;
+    line-height: 1;
+    letter-spacing: .04em;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .wf-reg-title {
+    font-family: var(--display);
+    font-size: 72px;
+    color: var(--white);
+    line-height: .9;
+    letter-spacing: .02em;
+    position: relative;
+  }
+  .wf-reg-sub {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 20px;
+    color: rgba(255,255,255,.8);
+    margin-top: 16px;
+    max-width: 500px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .wf-reg-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--red);
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    padding: 14px 36px;
+    border: 2px solid rgba(255,255,255,.5);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .2s;
+  }
+  .btn-outline-white:hover { border-color: var(--white); }
+
+  /* Footer */
+  .wf-footer {
+    background: var(--black);
+    padding: 60px 60px 36px;
+    color: rgba(255,255,255,.7);
+  }
+  .wf-footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .wf-footer-logo {
+    font-family: var(--display);
+    font-size: 48px;
+    color: var(--white);
+    letter-spacing: .04em;
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+  .wf-footer-logo span { color: var(--red); }
+  .wf-footer-tagline {
+    font-family: var(--editorial);
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(255,255,255,.5);
+    line-height: 1.5;
+  }
+  .wf-footer-heading {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .wf-footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .wf-footer-link {
+    font-size: 13px;
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .2s;
+    cursor: pointer;
+  }
+  .wf-footer-link:hover { color: var(--white); }
+  .wf-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .wf-footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+  }
+
+  /* ─── SECTION DIVIDER ─── */
+  .divider {
+    height: 6px;
+    background: linear-gradient(90deg, var(--red) 0%, var(--gold) 33%, var(--sky) 66%, var(--navy) 100%);
+  }
+
+  /* ─── MOTION PRINCIPLES ─── */
+  .motion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: var(--space-md);
+  }
+  .motion-card {
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-lg);
+    border-radius: 4px;
+  }
+  .motion-card-title {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .motion-card-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,.7);
+    line-height: 1.5;
+  }
+  .motion-card-val {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(255,255,255,.4);
+    margin-top: 8px;
+  }
+
+  /* ─── ICONOGRAPHY ─── */
+  .icon-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 80px;
+  }
+  .icon-box {
+    width: 56px;
+    height: 56px;
+    border: 1.5px solid rgba(0,0,0,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    border-radius: 4px;
+    background: var(--white);
+  }
+  .icon-name {
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--slate);
+    text-align: center;
+    letter-spacing: .04em;
+  }
+
+  /* ─── LOGO SYSTEM ─── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-md);
+  }
+  .logo-var {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 140px;
+    border-radius: 4px;
+  }
+  .logo-var-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    opacity: .6;
+  }
+  .logo-primary {
+    background: var(--navy);
+  }
+  .logo-reversed {
+    background: var(--cream);
+  }
+  .logo-red {
+    background: var(--red);
+  }
+  .logo-black {
+    background: var(--black);
+  }
+  .logotype {
+    font-family: var(--display);
+    font-size: 52px;
+    line-height: 1;
+    letter-spacing: .04em;
+  }
+  .logotype .dem { color: var(--white); }
+  .logotype .con { color: var(--red); }
+  .logotype-reversed .dem { color: var(--navy); }
+  .logotype-reversed .con { color: var(--red); }
+  .logotype-red .dem { color: var(--white); }
+  .logotype-red .con { color: var(--navy); }
+  .logo-tagline {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+  }
+
+  /* ─── PRINT NOTES ─── */
+  .note-box {
+    background: var(--gold);
+    color: var(--black);
+    padding: var(--space-md) var(--space-lg);
+    border-left: 4px solid var(--red-dark);
+    margin-top: var(--space-md);
+  }
+  .note-box strong {
+    font-family: var(--heading);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  .note-box p {
+    font-size: 13px;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* Responsive consideration note */
+  .resp-note {
+    background: rgba(26,39,68,.06);
+    border: 1px solid rgba(26,39,68,.15);
+    padding: var(--space-md) var(--space-lg);
+    font-size: 13px;
+    color: var(--slate);
+    line-height: 1.5;
+    border-radius: 4px;
+    margin-bottom: var(--space-lg);
+  }
+  .resp-note strong { color: var(--navy); }
+
+  @media (max-width: 900px) {
+    .wf-hero { grid-template-columns: 1fr; }
+    .wf-hero-visual { display: none; }
+    .wf-about { grid-template-columns: 1fr; }
+    .wf-tracks-grid { grid-template-columns: 1fr 1fr; }
+    .wf-speakers-grid { grid-template-columns: repeat(3, 1fr); }
+    .wf-footer-top { grid-template-columns: 1fr 1fr; }
+    .schedule-grid { grid-template-columns: 80px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- GUIDE NAVIGATION -->
+<nav class="guide-nav">
+  <span class="logo-pill">DEMCON</span>
+  <a href="#cover">Cover</a>
+  <a href="#identity">Logo</a>
+  <a href="#colors">Colors</a>
+  <a href="#typography">Type</a>
+  <a href="#components">Components</a>
+  <a href="#verticals">Verticals</a>
+  <a href="#motion">Motion</a>
+  <a href="#icons">Icons</a>
+  <a href="#wireframes">Wireframes</a>
+</nav>
+
+<!-- COVER -->
+<div id="cover" style="max-width:100%;padding:0;position:relative;min-height:100vh;background:var(--navy);display:grid;grid-template-columns:420px 1fr;overflow:hidden;">
+
+  <!-- Background image — full bleed across entire cover -->
+  <div style="position:absolute;inset:0;z-index:0;">
+    <img src="https://res.cloudinary.com/dmegrbq5k/image/upload/v1779368478/Untitled_design_-_2026-05-21T150100.650_ua7tkf.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;" />
+    <!-- Gradient: strong navy on left for text legibility, fades to transparent on right -->
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,39,68,0.97) 0%,rgba(26,39,68,0.88) 35%,rgba(26,39,68,0.4) 65%,rgba(26,39,68,0) 100%);"></div>
+    <!-- Subtle grid overlay -->
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.025) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.025) 60px);pointer-events:none;"></div>
+  </div>
+
+  <!-- Left: text content -->
+  <div class="cover-left" style="position:relative;z-index:1;">
+    <div class="cover-eyebrow">Style Guide &amp; Wireframes — v1.0</div>
+    <div class="cover-wordmark">DEM<br><span class="accent">CON</span></div>
+    <div class="cover-tagline">Democratic Conference — International Gathering of the Left</div>
+    <div class="cover-meta">
+      <div class="cover-meta-item"><strong>Location</strong>Bruxelles, Belgium</div>
+      <div class="cover-meta-item"><strong>Format</strong>Multi-Track, Multi-Day</div>
+      <div class="cover-meta-item"><strong>Document</strong>Brand &amp; UX System</div>
+    </div>
+  </div>
+
+  <!-- Right: empty — image shows through -->
+  <div style="position:relative;z-index:1;"></div>
+
+  <!-- Colour bar at bottom -->
+  <div style="position:absolute;bottom:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#C8202E 0%,#E8A820 50%,#5B8DB8 100%);z-index:2;"></div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- LOGO SYSTEM -->
+<div id="identity" class="section">
+  <div class="section-label">01 — Identity</div>
+  <div class="section-title">Logo System</div>
+  <p class="t-body" style="margin-bottom:var(--space-lg);">The DemCon wordmark uses Bebas Neue in two tones: <strong>DEM</strong> anchors in solid Navy or White, while <strong>CON</strong> fires in Revolutionary Red — signaling the tension between establishment democracy and radical transformation. A mono-spaced sub-label provides event context.</p>
+
+  <div class="logo-grid">
+    <div class="logo-var logo-primary">
+      <div class="logotype"><span class="dem">DEM</span><span class="con">CON</span></div>
+      <div class="logo-tagline" style="color:var(--gold);">International Left Conference</div>
+      <div class="logo-var-label" style="color:rgba(255,255,255,.4);">Primary (on Navy)</div>
+    </div>
+    <div class="logo-var logo-reversed">
+      <div class="logotype logotype-reversed"><span class="dem" style="color:var(--navy);">DEM</span><span class="con">CON</span></div>
+      <div class="logo-tagline" style="color:var(--slate);">International Left Conference</div>
+      <div class="logo-var-label" style="color:var(--slate);">Reversed (on Cream)</div>
+    </div>
+    <div class="logo-var logo-red">
+      <div class="logotype logotype-red"><span class="dem" style="color:var(--white);">DEM</span><span class="con" style="color:var(--navy);">CON</span></div>
+      <div class="logo-tagline" style="color:rgba(255,255,255,.7);">International Left Conference</div>
+      <div class="logo-var-label" style="color:rgba(255,255,255,.5);">On Red</div>
+    </div>
+    <div class="logo-var logo-black">
+      <div class="logotype"><span class="dem">DEM</span><span class="con">CON</span></div>
+      <div class="logo-tagline" style="color:rgba(255,255,255,.4);">International Left Conference</div>
+      <div class="logo-var-label" style="color:rgba(255,255,255,.3);">On Black</div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-top:var(--space-lg);">
+    <strong>Logo Rules</strong>
+    <p>Never stretch, rotate, or recolor the wordmark. Minimum size: 120px wide on digital, 25mm on print. Always maintain clear space of 1× the letter height on all sides. The gradient bar (Red → Gold → Sky) may accompany the logo as a decorative element but must not be applied to the letterforms themselves.</p>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- COLORS -->
+<div id="colors" class="section">
+  <div class="section-label">02 — Color</div>
+  <div class="section-title">Color Palette</div>
+  <p class="t-body" style="margin-bottom:var(--space-lg);">Drawn directly from mid-20th century internationalist poster tradition: bold primaries, deep solidarity navy, revolutionary red, and a warm gold recalling UN Day posters and workers' movement graphics. Cream replaces white for warmth.</p>
+
+  <div class="color-grid">
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--red);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Revolutionary Red</div>
+        <div class="swatch-hex">#C8202E</div>
+        <div class="swatch-use">Primary CTAs, headings, activist accent</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--red-dark);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Deep Red</div>
+        <div class="swatch-hex">#8B1219</div>
+        <div class="swatch-use">Hover states, pressed buttons, quotes</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--navy);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Solidarity Navy</div>
+        <div class="swatch-hex">#1A2744</div>
+        <div class="swatch-use">Backgrounds, nav, text on light</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--navy-mid);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Mid Navy</div>
+        <div class="swatch-hex">#243660</div>
+        <div class="swatch-use">Cards on dark, hover backgrounds</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--gold);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Harvest Gold</div>
+        <div class="swatch-hex">#E8A820</div>
+        <div class="swatch-use">Highlights, data callouts, accent</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--gold-light);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Straw Yellow</div>
+        <div class="swatch-hex">#F5C84A</div>
+        <div class="swatch-use">Light accent, badge fill, hover</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--sky);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">UN Sky Blue</div>
+        <div class="swatch-hex">#5B8DB8</div>
+        <div class="swatch-use">Links, international track, calm UI</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--cream);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Manifesto Cream</div>
+        <div class="swatch-hex">#F4EFE0</div>
+        <div class="swatch-use">Page background, warm neutral</div>
+      </div>
+    </div>
+    <div class="color-swatch">
+      <div class="swatch-block" style="background:var(--black); border:1px solid rgba(0,0,0,.1);"></div>
+      <div class="swatch-info">
+        <div class="swatch-name">Press Black</div>
+        <div class="swatch-hex">#0D0D0D</div>
+        <div class="swatch-use">Body text, footer backgrounds</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Track Color Palette -->
+  <h3 class="t-h3" style="margin-top:var(--space-xl); margin-bottom:var(--space-md);">Track / Vertical Accent Colors</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:var(--space-sm);">
+    <span class="track-badge track-feminism">Intersectional Feminism</span>
+    <span class="track-badge track-climate">Climate & Degrowth</span>
+    <span class="track-badge track-faith">Faith & Religion</span>
+    <span class="track-badge track-media">Media & Communication</span>
+    <span class="track-badge track-tech">Social Technologies</span>
+    <span class="track-badge track-children">Children's Liberation</span>
+    <span class="track-badge track-race">Anti-Racism & Decolonial</span>
+    <span class="track-badge track-municipal">Municipal & Regional Gov.</span>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TYPOGRAPHY -->
+<div id="typography" class="section">
+  <div class="section-label">03 — Typography</div>
+  <div class="section-title">Type System</div>
+  <div class="type-specimens">
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Display</div>
+        <div class="type-meta-font">Bebas Neue / 80–200px</div>
+        <div class="type-meta-use">Hero titles, section openers, poster-style moments. The visual voice of the movement — bold, unapologetic, readable at distance.</div>
+      </div>
+      <div class="t-display">DEMCON<br>2026</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Heading H1</div>
+        <div class="type-meta-font">League Spartan 900 / 40–72px</div>
+        <div class="type-meta-use">Page titles, speaker names, major section headings. Tight tracking, extreme weight.</div>
+      </div>
+      <div class="t-h1">Building a World<br>Beyond Capital</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Heading H2</div>
+        <div class="type-meta-font">League Spartan 700 / 26–36px</div>
+        <div class="type-meta-use">Sub-section titles, track names, card headings.</div>
+      </div>
+      <div class="t-h2">Climate Justice & Democratic Degrowth</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Heading H3</div>
+        <div class="type-meta-font">League Spartan 600 / 18–22px</div>
+        <div class="type-meta-use">Session titles, speaker bios, form labels.</div>
+      </div>
+      <div class="t-h3">Rethinking Care Work: A Feminist Political Economy</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Editorial</div>
+        <div class="type-meta-font">Playfair Display Italic / 20–28px</div>
+        <div class="type-meta-use">Pull quotes, taglines, manifesto fragments. Humanist contrast against the heavy sans.</div>
+      </div>
+      <div class="t-editorial">"Another world is not only possible — she is on her way. And on a quiet day, I can hear her breathing."</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Body</div>
+        <div class="type-meta-font">League Spartan 400 / 15–17px</div>
+        <div class="type-meta-use">Long-form text, descriptions, summaries. Generous line-height (1.7) for readability across internationalized content.</div>
+      </div>
+      <div class="t-body">DemCon is an international gathering of left, progressive, and radical democratic movements. Spanning three days across eight thematic verticals, the conference brings together organizers, thinkers, artists, and policy-makers from over 60 countries to build strategy, forge solidarity, and imagine democratic futures beyond the status quo.</div>
+    </div>
+
+    <div class="type-row">
+      <div class="type-meta">
+        <div class="type-meta-name">Label / Mono</div>
+        <div class="type-meta-font">IBM Plex Mono 600 / 10–13px</div>
+        <div class="type-meta-use">Section eyebrows, timestamps, tags, code, data. Communicates precision and technical authority.</div>
+      </div>
+      <div>
+        <div class="t-label" style="margin-bottom:8px;">Track 03 — Media & Communication</div>
+        <div class="t-label">Session begins: 14:30 — Hall B, Floor 2</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- COMPONENTS -->
+<div id="components" class="section">
+  <div class="section-label">04 — Components</div>
+  <div class="section-title">UI Components</div>
+
+  <!-- Navigation -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Navigation Bar</h3>
+  <div class="wireframe-container" style="margin-bottom:var(--space-xl);">
+    <div class="demo-nav">
+      <div class="nav-logo">DEM<span>CON</span></div>
+      <div class="nav-links">
+        <a class="nav-link" href="#">Programme</a>
+        <a class="nav-link" href="#">Speakers</a>
+        <a class="nav-link" href="#">Verticals</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">News</a>
+      </div>
+      <button class="nav-cta">Register →</button>
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Buttons</h3>
+  <div class="comp-card" style="margin-bottom:var(--space-xl);">
+    <div class="comp-label">Button System</div>
+    <div class="comp-preview" style="flex-direction:row; flex-wrap:wrap; gap:12px; align-items:center;">
+      <button class="btn btn-primary">Register Now →</button>
+      <button class="btn btn-gold">View Programme</button>
+      <button class="btn btn-outline">Learn More</button>
+      <button class="btn btn-primary" style="font-size:12px; padding:8px 20px;">Add to Schedule</button>
+    </div>
+  </div>
+
+  <!-- Speaker card -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Speaker Cards</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(320px,1fr)); gap:var(--space-md); margin-bottom:var(--space-xl);">
+    <div class="speaker-card">
+      <div class="speaker-avatar">AM</div>
+      <div>
+        <div class="speaker-name">Amara Méndez-Okafor</div>
+        <div class="speaker-role">Political Economist & Movement Strategist</div>
+        <div class="speaker-org">Rosa Luxemburg Foundation</div>
+        <div style="margin-top:8px;"><span class="track-badge track-race">Anti-Racism</span></div>
+      </div>
+    </div>
+    <div class="speaker-card" style="border-left-color:var(--sky);">
+      <div class="speaker-avatar" style="background:var(--sky);">SL</div>
+      <div>
+        <div class="speaker-name">Sofia Larsen-Petrov</div>
+        <div class="speaker-role">Degrowth Economist</div>
+        <div class="speaker-org">Transnational Institute</div>
+        <div style="margin-top:8px;"><span class="track-badge track-climate">Climate & Degrowth</span></div>
+      </div>
+    </div>
+    <div class="speaker-card" style="border-left-color:var(--gold);">
+      <div class="speaker-avatar" style="background:var(--gold); color:var(--black);">RK</div>
+      <div>
+        <div class="speaker-name">Rev. Dr. Rani Krishnamurti</div>
+        <div class="speaker-role">Liberation Theologian</div>
+        <div class="speaker-org">World Council of Churches</div>
+        <div style="margin-top:8px;"><span class="track-badge track-faith">Faith & Religion</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session tiles -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Session Tiles</h3>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:var(--space-sm); margin-bottom:var(--space-xl);">
+    <div class="session-tile" style="border-left-color:var(--red);">
+      <div class="session-time">DAY 1 — 10:00–11:30</div>
+      <div class="session-title">The Long Crisis of Liberal Democracy: What Comes After?</div>
+      <div class="session-room">Main Stage — Hall A</div>
+      <div style="margin-top:10px;"><span class="track-badge track-municipal">Municipal Gov.</span></div>
+    </div>
+    <div class="session-tile" style="border-left-color:var(--gold);">
+      <div class="session-time">DAY 1 — 11:45–13:00</div>
+      <div class="session-title">Feminist Strikes & New Forms of Collective Action</div>
+      <div class="session-room">Workshop Room C2</div>
+      <div style="margin-top:10px;"><span class="track-badge track-feminism">Intersectional Feminism</span></div>
+    </div>
+    <div class="session-tile" style="border-left-color:#4a8a4a;">
+      <div class="session-time">DAY 1 — 14:30–16:00</div>
+      <div class="session-title">Post-Growth Cities: Planning for a Steady-State Economy</div>
+      <div class="session-room">Hall B — Breakout</div>
+      <div style="margin-top:10px;"><span class="track-badge track-climate">Climate & Degrowth</span></div>
+    </div>
+  </div>
+
+  <!-- Track pills -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Vertical / Track Pills</h3>
+  <div style="display:flex;flex-wrap:wrap;gap:10px; margin-bottom:var(--space-xl);">
+    <button class="vertical-pill" style="color:#5c1a2e; background:rgba(232,160,180,.2);">
+      <span class="pip" style="background:#5c1a2e;"></span>Intersectional Feminism
+    </button>
+    <button class="vertical-pill" style="color:#1e4a1c; background:rgba(168,213,162,.2);">
+      <span class="pip" style="background:#1e4a1c;"></span>Climate & Degrowth
+    </button>
+    <button class="vertical-pill" style="color:#2e1e5c; background:rgba(196,176,232,.2);">
+      <span class="pip" style="background:#2e1e5c;"></span>Faith & Religion
+    </button>
+    <button class="vertical-pill" style="color:var(--navy); background:rgba(160,200,232,.2);">
+      <span class="pip" style="background:var(--navy);"></span>Social Technologies
+    </button>
+    <button class="vertical-pill" style="color:#5c2e00; background:rgba(245,200,160,.2);">
+      <span class="pip" style="background:#5c2e00;"></span>Children's Liberation
+    </button>
+    <button class="vertical-pill" style="color:#3a1010; background:rgba(200,160,160,.2);">
+      <span class="pip" style="background:#3a1010;"></span>Anti-Racism & Decolonial
+    </button>
+    <button class="vertical-pill" style="color:#0a3a28; background:rgba(160,232,208,.2);">
+      <span class="pip" style="background:#0a3a28;"></span>Municipal & Regional Gov.
+    </button>
+    <button class="vertical-pill" style="color:#5c3a00; background:rgba(245,208,138,.2);">
+      <span class="pip" style="background:#5c3a00;"></span>Media & Communication
+    </button>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- VERTICALS -->
+<div id="verticals" class="section">
+  <div class="section-label">05 — Conference Verticals</div>
+  <div class="section-title">Eight Thematic Tracks</div>
+  <p class="t-body" style="margin-bottom:var(--space-lg);">Each vertical has a distinct color identity, icon, and editorial voice. All share the same typographic system and structural grid, ensuring coherence across a highly diverse programme.</p>
+
+  <div class="verticals-grid">
+    <div class="vertical-card" style="background:#5c1a2e;">
+      <div class="vc-number">01</div>
+      <div class="vc-icon">♀️</div>
+      <div class="vc-name">Intersectional Feminism</div>
+      <div class="vc-desc">Gender justice, care economies, reproductive rights, feminist foreign policy</div>
+    </div>
+    <div class="vertical-card" style="background:#1e4a1c;">
+      <div class="vc-number">02</div>
+      <div class="vc-icon">🌱</div>
+      <div class="vc-name">Climate & Degrowth</div>
+      <div class="vc-desc">Ecological limits, post-growth economics, just transition, energy democracy</div>
+    </div>
+    <div class="vertical-card" style="background:#2e1e5c;">
+      <div class="vc-number">03</div>
+      <div class="vc-icon">🕯️</div>
+      <div class="vc-name">Faith & Religion</div>
+      <div class="vc-desc">Liberation theology, interfaith solidarity, spiritual traditions in social movements</div>
+    </div>
+    <div class="vertical-card" style="background:#5c3a00;">
+      <div class="vc-number">04</div>
+      <div class="vc-icon">📡</div>
+      <div class="vc-name">Media & Communication</div>
+      <div class="vc-desc">Progressive media strategy, counter-narratives, journalism, public sphere</div>
+    </div>
+    <div class="vertical-card" style="background:#1a3a5c;">
+      <div class="vc-number">05</div>
+      <div class="vc-icon">⚙️</div>
+      <div class="vc-name">Social Technologies</div>
+      <div class="vc-desc">Platform cooperativism, AI governance, digital commons, tech worker organizing</div>
+    </div>
+    <div class="vertical-card" style="background:#5c2e00;">
+      <div class="vc-number">06</div>
+      <div class="vc-icon">🧒</div>
+      <div class="vc-name">Children's Liberation</div>
+      <div class="vc-desc">Child rights, transformative education, democratic parenting, youth agency</div>
+    </div>
+    <div class="vertical-card" style="background:#3a1010;">
+      <div class="vc-number">07</div>
+      <div class="vc-icon">✊🏾</div>
+      <div class="vc-name">Anti-Racism & Decolonial</div>
+      <div class="vc-desc">Reparations, decolonizing institutions, indigenous sovereignty, abolition</div>
+    </div>
+    <div class="vertical-card" style="background:#0a3a28;">
+      <div class="vc-number">08</div>
+      <div class="vc-icon">🏛️</div>
+      <div class="vc-name">Municipal & Regional Gov.</div>
+      <div class="vc-desc">Participatory budgeting, federalism, local democracy, commons governance</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- MOTION -->
+<div id="motion" class="section">
+  <div class="section-label">06 — Motion & Animation</div>
+  <div class="section-title">Motion Principles</div>
+  <p class="t-body" style="margin-bottom:var(--space-lg);">Motion references the energy of protest graphics — quick, purposeful, never decorative for its own sake. All transitions feel like turning a page or unfurling a banner.</p>
+  <div class="motion-grid">
+    <div class="motion-card">
+      <div class="motion-card-title">Entrance</div>
+      <div class="motion-card-desc">Content slides up and fades in on scroll. Staggered by 80ms between sibling elements.</div>
+      <div class="motion-card-val">translateY(20px) → 0 / opacity 0 → 1</div>
+    </div>
+    <div class="motion-card">
+      <div class="motion-card-title">Duration</div>
+      <div class="motion-card-desc">Short: 150ms (micro). Medium: 300ms (page element). Long: 600ms (page transitions).</div>
+      <div class="motion-card-val">Short / Medium / Long</div>
+    </div>
+    <div class="motion-card">
+      <div class="motion-card-title">Easing</div>
+      <div class="motion-card-desc">Use ease-out for entrances (like a fist landing). Ease-in-out for transforms. Linear for progress bars.</div>
+      <div class="motion-card-val">cubic-bezier(0.0, 0.0, 0.2, 1)</div>
+    </div>
+    <div class="motion-card">
+      <div class="motion-card-title">Hero Sequence</div>
+      <div class="motion-card-desc">On load: wordmark slides up → tagline fades → CTA buttons stagger in → gradient bar draws across bottom.</div>
+      <div class="motion-card-val">Total duration: ~1.2s</div>
+    </div>
+    <div class="motion-card">
+      <div class="motion-card-title">Hover States</div>
+      <div class="motion-card-desc">Cards lift 2px. Buttons darken. Track cards scale 1.02. All 200ms ease-out. Never flash or jank.</div>
+      <div class="motion-card-val">transform / background / color</div>
+    </div>
+    <div class="motion-card">
+      <div class="motion-card-title">Accessibility</div>
+      <div class="motion-card-desc">All animations respect prefers-reduced-motion. On reduced motion, use instant opacity transitions only.</div>
+      <div class="motion-card-val">@media (prefers-reduced-motion)</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ICONS -->
+<div id="icons" class="section">
+  <div class="section-label">07 — Iconography</div>
+  <div class="section-title">Icon Set</div>
+  <p class="t-body" style="margin-bottom:var(--space-lg);">Icons use a consistent 24px grid, 1.5px stroke weight, rounded line caps. The visual language references 20th century movement symbology — bold, legible at small sizes, never ornamental.</p>
+  <div class="icon-grid">
+    <div class="icon-item"><div class="icon-box">✊</div><div class="icon-name">Solidarity</div></div>
+    <div class="icon-item"><div class="icon-box">🌍</div><div class="icon-name">International</div></div>
+    <div class="icon-item"><div class="icon-box">🗳️</div><div class="icon-name">Democracy</div></div>
+    <div class="icon-item"><div class="icon-box">🌱</div><div class="icon-name">Climate</div></div>
+    <div class="icon-item"><div class="icon-box">📡</div><div class="icon-name">Media</div></div>
+    <div class="icon-item"><div class="icon-box">🏛️</div><div class="icon-name">Governance</div></div>
+    <div class="icon-item"><div class="icon-box">⚙️</div><div class="icon-name">Technology</div></div>
+    <div class="icon-item"><div class="icon-box">🧒</div><div class="icon-name">Children</div></div>
+    <div class="icon-item"><div class="icon-box">☮️</div><div class="icon-name">Peace</div></div>
+    <div class="icon-item"><div class="icon-box">📚</div><div class="icon-name">Education</div></div>
+    <div class="icon-item"><div class="icon-box">🕊️</div><div class="icon-name">Freedom</div></div>
+    <div class="icon-item"><div class="icon-box">🤝</div><div class="icon-name">Alliance</div></div>
+    <div class="icon-item"><div class="icon-box">🗺️</div><div class="icon-name">Region</div></div>
+    <div class="icon-item"><div class="icon-box">💬</div><div class="icon-name">Dialogue</div></div>
+    <div class="icon-item"><div class="icon-box">🔬</div><div class="icon-name">Research</div></div>
+    <div class="icon-item"><div class="icon-box">🎙️</div><div class="icon-name">Keynote</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- WIREFRAMES -->
+<div id="wireframes" class="section">
+  <div class="section-label">08 — Wireframes</div>
+  <div class="section-title">Page Wireframes</div>
+
+  <div class="resp-note">
+    <strong>Note:</strong> All wireframes shown at desktop breakpoint (1280px). Mobile-first responsive breakpoints: 375px (mobile), 768px (tablet), 1024px (desktop), 1440px (wide). On mobile the two-column hero collapses to single column with poster mosaic hidden behind a scrolling ticker strip.
+  </div>
+
+  <!-- WIREFRAME 1: Homepage -->
+  <h3 class="t-h3" style="margin-bottom:var(--space-md);">Wireframe 1 — Homepage</h3>
+  <div class="wireframe-container">
+    <div class="wireframe-label">PAGE 01 — HOME</div>
+
+    <!-- Nav -->
+    <div class="demo-nav">
+      <div class="nav-logo">DEM<span>CON</span></div>
+      <div class="nav-links">
+        <a class="nav-link" href="#">Programme</a>
+        <a class="nav-link" href="#">Speakers</a>
+        <a class="nav-link" href="#">Verticals</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">News</a>
+      </div>
+      <button class="nav-cta">Register →</button>
+    </div>
+
+    <!-- Hero -->
+    <div class="wf-hero">
+      <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(255,255,255,.03) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(255,255,255,.03) 60px);pointer-events:none;"></div>
+      <div class="wf-hero-text">
+        <div class="wf-hero-eyebrow">// DemCon 2026 — International Left Conference</div>
+        <div class="wf-hero-title">BUILD<br>ING<br><span class="red">TO</span><br>GETHER</div>
+        <div class="wf-hero-sub">"A space for every strand of the radical democratic tradition — to think, to debate, to organize."</div>
+        <div class="wf-hero-actions">
+          <button class="btn btn-primary">Register Now →</button>
+          <button class="btn btn-outline" style="color:var(--gold);border-color:var(--gold);">View Programme</button>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;background:var(--navy);">
+        <img src="https://res.cloudinary.com/dmegrbq5k/image/upload/v1779368478/Untitled_design_-_2026-05-21T150100.650_ua7tkf.png" style="width:100%;height:100%;object-fit:cover;object-position:center center;display:block;min-height:540px;" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(26,39,68,0.85) 0%,rgba(26,39,68,0.3) 50%,rgba(26,39,68,0) 100%);pointer-events:none;"></div>
+      </div>
+      <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--red),var(--gold),var(--sky));"></div>
+    </div>
+
+    <!-- Ticker strip -->
+    <div class="wf-strip">
+      <div class="wf-strip-item">📅 October 15–17, 2026</div>
+      <div class="wf-strip-item">🌍 Bruxelles, Belgium</div>
+      <div class="wf-strip-item">🎙️ 80+ Speakers</div>
+      <div class="wf-strip-item">🗺️ 60+ Countries</div>
+      <div class="wf-strip-item">📋 8 Verticals</div>
+      <div class="wf-strip-item">🤝 Register Now</div>
+    </div>
+
+    <!-- About -->
+    <div class="wf-about">
+      <div>
+        <div class="wf-about-label">What is DemCon?</div>
+        <div class="wf-about-title">A new kind of international conference for the democratic left</div>
+        <div class="wf-about-body">DemCon brings together the full spectrum of progressive, socialist, green, feminist, and decolonial movements — not to paper over differences, but to build strategic solidarity across them. Eight thematic verticals. Three days. One common purpose.</div>
+        <button class="btn btn-primary">About DemCon →</button>
+      </div>
+      <div>
+        <div class="wf-about-stats">
+          <div class="stat-item"><div class="stat-num">80+</div><div class="stat-label">International Speakers</div></div>
+          <div class="stat-item"><div class="stat-num">60+</div><div class="stat-label">Countries Represented</div></div>
+          <div class="stat-item"><div class="stat-num">3</div><div class="stat-label">Conference Days</div></div>
+          <div class="stat-item"><div class="stat-num">8</div><div class="stat-label">Thematic Verticals</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tracks section -->
+    <div class="wf-tracks">
+      <div class="wf-tracks-header">
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Conference Verticals</div>
+          <div class="wf-tracks-title">Eight<br>Tracks</div>
+        </div>
+        <button class="btn btn-outline" style="color:var(--gold);border-color:rgba(232,168,32,.5);">Full Programme →</button>
+      </div>
+      <div class="wf-tracks-grid">
+        <div class="wf-track-card" style="background:#5c1a2e;">
+          <div class="wf-tc-num">01</div>
+          <div class="wf-tc-icon">♀️</div>
+          <div class="wf-tc-name">Intersectional Feminism</div>
+          <div class="wf-tc-count">12 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#1e4a1c;">
+          <div class="wf-tc-num">02</div>
+          <div class="wf-tc-icon">🌱</div>
+          <div class="wf-tc-name">Climate & Degrowth</div>
+          <div class="wf-tc-count">10 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#2e1e5c;">
+          <div class="wf-tc-num">03</div>
+          <div class="wf-tc-icon">🕯️</div>
+          <div class="wf-tc-name">Faith & Religion</div>
+          <div class="wf-tc-count">8 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#5c3a00;">
+          <div class="wf-tc-num">04</div>
+          <div class="wf-tc-icon">📡</div>
+          <div class="wf-tc-name">Media & Comms</div>
+          <div class="wf-tc-count">9 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#1a3a5c;">
+          <div class="wf-tc-num">05</div>
+          <div class="wf-tc-icon">⚙️</div>
+          <div class="wf-tc-name">Social Technologies</div>
+          <div class="wf-tc-count">11 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#5c2e00;">
+          <div class="wf-tc-num">06</div>
+          <div class="wf-tc-icon">🧒</div>
+          <div class="wf-tc-name">Children's Liberation</div>
+          <div class="wf-tc-count">7 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#3a1010;">
+          <div class="wf-tc-num">07</div>
+          <div class="wf-tc-icon">✊🏾</div>
+          <div class="wf-tc-name">Anti-Racism & Decolonial</div>
+          <div class="wf-tc-count">13 Sessions</div>
+        </div>
+        <div class="wf-track-card" style="background:#0a3a28;">
+          <div class="wf-tc-num">08</div>
+          <div class="wf-tc-icon">🏛️</div>
+          <div class="wf-tc-name">Municipal & Regional Gov.</div>
+          <div class="wf-tc-count">9 Sessions</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speakers -->
+    <div class="wf-speakers">
+      <div class="wf-speakers-header">
+        <div class="wf-speakers-label">Confirmed Speakers</div>
+        <div class="wf-speakers-title">Voices from the Global Left</div>
+      </div>
+      <div class="wf-speakers-grid">
+        <div class="wf-speaker-card">
+          <div class="wf-sp-photo" style="background:#5c1a2e;">✊</div>
+          <div class="wf-sp-name">Amara Méndez-Okafor</div>
+          <div class="wf-sp-org">Rosa Luxemburg Foundation</div>
+        </div>
+        <div class="wf-speaker-card">
+          <div class="wf-sp-photo" style="background:#1e4a1c;">🌱</div>
+          <div class="wf-sp-name">Sofia Larsen-Petrov</div>
+          <div class="wf-sp-org">Transnational Institute</div>
+        </div>
+        <div class="wf-speaker-card">
+          <div class="wf-sp-photo" style="background:#2e1e5c;">🕯️</div>
+          <div class="wf-sp-name">Rev. Rani Krishnamurti</div>
+          <div class="wf-sp-org">World Council of Churches</div>
+        </div>
+        <div class="wf-speaker-card">
+          <div class="wf-sp-photo" style="background:#5c3a00;">📡</div>
+          <div class="wf-sp-name">Marcos Delgado-Reyes</div>
+          <div class="wf-sp-org">Jacobin / Clave Media</div>
+        </div>
+        <div class="wf-speaker-card">
+          <div class="wf-sp-photo" style="background:#1a3a5c;">⚙️</div>
+          <div class="wf-sp-name">Yuna Park-Osei</div>
+          <div class="wf-sp-org">Data for Democracy Lab</div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <button class="btn btn-outline">All Speakers →</button>
+      </div>
+    </div>
+
+    <!-- Register CTA -->
+    <div class="wf-register">
+      <div>
+        <div class="wf-reg-title">Join Us.<br>Change Things.</div>
+        <div class="wf-reg-sub">"The conference that doesn't just talk about the world we want — but starts building it."</div>
+      </div>
+      <div class="wf-reg-buttons">
+        <button class="btn-white">Register Now →</button>
+        <button class="btn-outline-white">Apply to Speak</button>
+        <button class="btn-outline-white">Propose a Panel</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="wf-footer">
+      <div class="wf-footer-top">
+        <div>
+          <div class="wf-footer-logo">DEM<span>CON</span></div>
+          <div class="wf-footer-tagline">"Another world is not only possible — she is on her way."</div>
+        </div>
+        <div>
+          <div class="wf-footer-heading">Programme</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">Full Schedule</span>
+            <span class="wf-footer-link">Keynotes</span>
+            <span class="wf-footer-link">Workshops</span>
+            <span class="wf-footer-link">All Verticals</span>
+          </div>
+        </div>
+        <div>
+          <div class="wf-footer-heading">Participate</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">Register</span>
+            <span class="wf-footer-link">Apply to Speak</span>
+            <span class="wf-footer-link">Propose a Session</span>
+            <span class="wf-footer-link">Scholarships</span>
+          </div>
+        </div>
+        <div>
+          <div class="wf-footer-heading">About</div>
+          <div class="wf-footer-links">
+            <span class="wf-footer-link">Our Mission</span>
+            <span class="wf-footer-link">Partners</span>
+            <span class="wf-footer-link">Press</span>
+            <span class="wf-footer-link">Contact</span>
+          </div>
+        </div>
+      </div>
+      <div class="wf-footer-bottom">
+        <div class="wf-footer-copy">© DemCon 2026. An international conference of the democratic left.</div>
+        <div style="display:flex;gap:16px;">
+          <span class="wf-footer-link">Privacy</span>
+          <span class="wf-footer-link">Accessibility</span>
+          <span class="wf-footer-link">Code of Conduct</span>
+        </div>
+      </div>
+    </div>
+  </div><!-- end wireframe 1 -->
+
+  <!-- WIREFRAME 2: Programme / Schedule Page -->
+  <h3 class="t-h3" style="margin-top:var(--space-2xl); margin-bottom:var(--space-md);">Wireframe 2 — Programme / Schedule</h3>
+  <div class="wireframe-container">
+    <div class="wireframe-label">PAGE 02 — PROGRAMME</div>
+
+    <div class="demo-nav">
+      <div class="nav-logo">DEM<span>CON</span></div>
+      <div class="nav-links">
+        <a class="nav-link" href="#" style="color:var(--gold);">Programme</a>
+        <a class="nav-link" href="#">Speakers</a>
+        <a class="nav-link" href="#">Verticals</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">News</a>
+      </div>
+      <button class="nav-cta">Register →</button>
+    </div>
+
+    <!-- Page header -->
+    <div style="background:var(--navy);padding:60px 60px 40px;border-bottom:4px solid var(--red);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Full Programme</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--white);line-height:.9;letter-spacing:.03em;margin-bottom:20px;">Three Days.<br>Eight Tracks.<br><span style="color:var(--red);">One Movement.</span></div>
+      <!-- Filter bar -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:28px;">
+        <button class="btn btn-gold" style="font-size:12px;padding:8px 16px;">All Tracks</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Feminism</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Climate</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Faith</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Media</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Technology</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Children</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Anti-Racism</button>
+        <button class="btn btn-outline" style="color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.2);font-size:12px;padding:8px 16px;">Municipal</button>
+      </div>
+    </div>
+
+    <!-- Schedule -->
+    <div class="wf-schedule">
+      <div class="day-tabs">
+        <div class="day-tab active">Day 1 — Oct 15</div>
+        <div class="day-tab">Day 2 — Oct 16</div>
+        <div class="day-tab">Day 3 — Oct 17</div>
+      </div>
+
+      <div class="schedule-grid">
+        <div class="sched-time">09:00</div>
+        <div class="sched-session track-red" style="grid-column:2/5;">
+          <div class="sched-session-title">Opening Plenary — The State of the Global Left: Challenges and Possibilities</div>
+          <div class="sched-session-speaker">All keynote speakers</div>
+          <div class="sched-session-room">Main Hall — All Tracks</div>
+        </div>
+
+        <div class="sched-time">11:00</div>
+        <div class="sched-session track-red">
+          <div class="sched-session-title">Feminist Strikes & New Forms of Collective Action</div>
+          <div class="sched-session-speaker">A. Méndez-Okafor</div>
+          <div class="sched-session-room">Hall A · Feminism</div>
+        </div>
+        <div class="sched-session track-gold">
+          <div class="sched-session-title">Degrowth & the Commons: Municipal Models</div>
+          <div class="sched-session-speaker">S. Larsen-Petrov</div>
+          <div class="sched-session-room">Hall B · Climate</div>
+        </div>
+        <div class="sched-session track-green">
+          <div class="sched-session-title">Liberation Theology in 21st Century Movements</div>
+          <div class="sched-session-speaker">Rev. Krishnamurti</div>
+          <div class="sched-session-room">Hall C · Faith</div>
+        </div>
+
+        <div class="sched-time">13:00</div>
+        <div class="sched-session" style="grid-column:2/5;border-left:3px solid var(--slate);">
+          <div class="sched-session-title" style="color:var(--slate);">Lunch Break — Communal Dining</div>
+          <div class="sched-session-room">All attendees</div>
+        </div>
+
+        <div class="sched-time">14:30</div>
+        <div class="sched-session" style="border-left-color:#5c2e00;">
+          <div class="sched-session-title">Platform Cooperativism and the Digital Commons</div>
+          <div class="sched-session-speaker">Y. Park-Osei</div>
+          <div class="sched-session-room">Lab 1 · Technology</div>
+        </div>
+        <div class="sched-session" style="border-left-color:#3a1010;">
+          <div class="sched-session-title">Reparations Now: Frameworks & Movement Strategy</div>
+          <div class="sched-session-speaker">Panel</div>
+          <div class="sched-session-room">Hall A · Anti-Racism</div>
+        </div>
+        <div class="sched-session" style="border-left-color:#0a3a28;">
+          <div class="sched-session-title">Participatory Budgeting: Lessons from Porto Alegre to Barcelona</div>
+          <div class="sched-session-speaker">M. Delgado-Reyes</div>
+          <div class="sched-session-room">Hall D · Municipal</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end wireframe 2 -->
+
+  <!-- WIREFRAME 3: Speaker Profile -->
+  <h3 class="t-h3" style="margin-top:var(--space-2xl); margin-bottom:var(--space-md);">Wireframe 3 — Speaker Profile</h3>
+  <div class="wireframe-container">
+    <div class="wireframe-label">PAGE 03 — SPEAKER</div>
+
+    <div class="demo-nav">
+      <div class="nav-logo">DEM<span>CON</span></div>
+      <div class="nav-links">
+        <a class="nav-link" href="#">Programme</a>
+        <a class="nav-link" href="#" style="color:var(--gold);">Speakers</a>
+        <a class="nav-link" href="#">Verticals</a>
+        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="#">News</a>
+      </div>
+      <button class="nav-cta">Register →</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:340px 1fr;min-height:600px;">
+      <!-- Sidebar -->
+      <div style="background:var(--navy);padding:48px 36px;display:flex;flex-direction:column;gap:24px;">
+        <div style="width:140px;height:140px;border-radius:50%;background:#5c1a2e;display:flex;align-items:center;justify-content:center;font-size:72px;border:3px solid var(--red);position:relative;">
+          ✊
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Keynote Speaker</div>
+          <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:28px;color:var(--white);line-height:1.1;">Amara<br>Méndez-Okafor</div>
+          <div style="font-size:14px;color:rgba(255,255,255,.6);margin-top:8px;">Political Economist & Movement Strategist</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--red);margin-top:6px;">Rosa Luxemburg Foundation</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <span class="track-badge track-race">Anti-Racism & Decolonial</span>
+          <span class="track-badge track-feminism">Intersectional Feminism</span>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:20px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;">Sessions</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.5;display:flex;flex-direction:column;gap:8px;">
+            <div>📅 Day 1 · 11:00 — Hall A<br><span style="color:var(--white);font-weight:600;">Feminist Strikes & New Forms of Collective Action</span></div>
+            <div>📅 Day 2 · 14:30 — Main Stage<br><span style="color:var(--white);font-weight:600;">Opening Plenary Keynote</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div style="padding:48px;background:var(--cream);">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:16px;">Speaker Biography</div>
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:22px;color:var(--red-dark);line-height:1.4;margin-bottom:24px;max-width:580px;">"Solidarity is not charity — it is the recognition of shared struggle across difference."</div>
+        <div style="font-size:15px;color:var(--slate);line-height:1.8;max-width:580px;margin-bottom:32px;">Amara Méndez-Okafor is a political economist, movement strategist, and writer based between Lagos and Berlin. Her work focuses on the intersections of anti-colonial thought, feminist economics, and radical democratic theory. She is the author of <em>After Empire: A New Political Economy</em> and serves as Director of the Political Education program at the Rosa Luxemburg Foundation.</div>
+        <div style="display:flex;gap:12px;margin-bottom:40px;">
+          <button class="btn btn-primary" style="font-size:13px;padding:10px 24px;">Add to My Schedule</button>
+          <button class="btn btn-outline" style="font-size:13px;padding:10px 24px;">Watch Past Talks →</button>
+        </div>
+        <div style="border-top:1px solid rgba(0,0,0,.1);padding-top:32px;">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);margin-bottom:16px;">Other speakers you may like</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+            <div class="speaker-card" style="border-left-color:var(--sky);">
+              <div class="speaker-avatar" style="background:var(--sky);width:40px;height:40px;font-size:18px;">SL</div>
+              <div>
+                <div class="speaker-name" style="font-size:13px;">Sofia Larsen-Petrov</div>
+                <div class="speaker-org" style="font-size:10px;">Transnational Institute</div>
+              </div>
+            </div>
+            <div class="speaker-card" style="border-left-color:var(--gold);">
+              <div class="speaker-avatar" style="background:var(--gold);color:var(--black);width:40px;height:40px;font-size:18px;">RK</div>
+              <div>
+                <div class="speaker-name" style="font-size:13px;">Rev. Rani Krishnamurti</div>
+                <div class="speaker-org" style="font-size:10px;">World Council of Churches</div>
+              </div>
+            </div>
+            <div class="speaker-card" style="border-left-color:#3a1010;">
+              <div class="speaker-avatar" style="background:#3a1010;width:40px;height:40px;font-size:18px;">MD</div>
+              <div>
+                <div class="speaker-name" style="font-size:13px;">Marcos Delgado-Reyes</div>
+                <div class="speaker-org" style="font-size:10px;">Jacobin / Clave Media</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end wireframe 3 -->
+
+</div><!-- end wireframes section -->
+
+<div class="divider"></div>
+
+<!-- DESIGN PRINCIPLES CLOSING NOTE -->
+<div class="section">
+  <div class="section-label">09 — Design Philosophy</div>
+  <div class="section-title">Principles</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--space-md);">
+    <div style="padding:var(--space-lg);background:var(--navy);color:var(--white);border-top:3px solid var(--red);">
+      <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:17px;color:var(--gold);margin-bottom:8px;">Poster Aesthetics</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;">Inspired by 20th century internationalist poster design: bold primaries, flat color, heavy type. Every page should feel like a broadsheet that also converts.</div>
+    </div>
+    <div style="padding:var(--space-lg);background:var(--navy);color:var(--white);border-top:3px solid var(--gold);">
+      <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:17px;color:var(--gold);margin-bottom:8px;">Radical Accessibility</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;">WCAG AA minimum throughout. All color combinations tested for contrast. Full keyboard navigation. Translation-ready structure (RTL layouts supported).</div>
+    </div>
+    <div style="padding:var(--space-lg);background:var(--navy);color:var(--white);border-top:3px solid var(--sky);">
+      <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:17px;color:var(--gold);margin-bottom:8px;">Track Identity</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;">Each of the 8 verticals has its own color signature, icon, and editorial voice — while sharing the common DemCon system for instant coherence.</div>
+    </div>
+    <div style="padding:var(--space-lg);background:var(--navy);color:var(--white);border-top:3px solid #4a8a4a;">
+      <div style="font-family:'League Spartan',sans-serif;font-weight:900;font-size:17px;color:var(--gold);margin-bottom:8px;">Protest Energy</div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;">The design should feel urgent without feeling aggressive. Every interaction communicates forward movement, solidarity, and possibility.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:var(--space-xl);padding:var(--space-xl);background:var(--black);text-align:center;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;color:var(--white);line-height:1;letter-spacing:.04em;">DEM<span style="color:var(--red);">CON</span></div>
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.5);margin-top:12px;">"Another world is not only possible — she is on her way."</div>
+    <div style="height:4px;background:linear-gradient(90deg,var(--red),var(--gold),var(--sky));margin:28px auto 0;max-width:400px;"></div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,.3);margin-top:24px;letter-spacing:.14em;">DEMCON STYLE GUIDE V1.0 — BRAND & UX SYSTEM</div>
+  </div>
+
+</div>
+
+</body>
+</html>
